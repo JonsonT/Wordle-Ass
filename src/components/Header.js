@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetGame } from "../actions/gameActions";
+import Login from "./login";
 import InfoModal from "./InfoModal";
 
 export default function Header() {
   const [infoOpen, setInfoOpen] = useState(false);
+  const [loginOpen, setloginOpen] = useState(false);
   const dispatch = useDispatch();
   // const word = useSelector((state) => state.game.wordWanted)
 
   const infoClickHandle = () => {
     setInfoOpen(!infoOpen);
+  };
+  const LoginClickHandle = () => {
+    setloginOpen(!loginOpen);
   };
 
   return (
@@ -31,7 +36,8 @@ export default function Header() {
         </svg>
       </div>
       <div>WORDLE</div>
-      <div onClick={() => dispatch(resetGame())}>
+      <div onClick={LoginClickHandle}>
+        {/* <div onClick={() => dispatch(resetGame())}> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -48,6 +54,7 @@ export default function Header() {
         </svg>
       </div>
       <InfoModal open={infoOpen} setOpen={setInfoOpen} />
+      <Login open={loginOpen} setOpen={setloginOpen} />
     </div>
   );
 }
